@@ -1,15 +1,33 @@
 <template>
-      <Header />
+      <div class="container">
+        <HeaderVue @toggle-form="toggleForm" title="Task Tracker" :taskform="taskform" />
+        <router-view :taskform="taskform"></router-view>
+        <Footer/>
+      </div>
+      
+      
 </template>
 
 <script>
-import Header from './components/Header.vue';  
+import HeaderVue from './components/Header.vue';  
+import Footer from './components/Footer.vue'
 
 export default {
     name: 'app',
     components:{
-      Header
-    }
+    HeaderVue,
+    Footer,
+    },
+    data(){
+      return{
+        taskform: false
+      }
+    },
+    methods:{
+      toggleForm(){
+        this.taskform = !this.taskform;
+      }  
+  }
 }
 </script>
 
